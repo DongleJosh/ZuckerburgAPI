@@ -1,0 +1,24 @@
+{
+  "name": "zuckerburgapi",
+  "version": "1.0.0",
+  "description": "ZuckerburgAPI",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DongleJosh?tab=repositories"
+  },
+  "keywords": [
+    "Very",
+    "Cool"
+  ],
+  "author": "DongleJosh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
+  }
+}
