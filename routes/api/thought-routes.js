@@ -72,9 +72,9 @@ router.delete('/:id', async (req, res) => {
 });
 // http://localhost:3001/api/thoughts/5
 // POST a new reaction to a thought
-router.post(':thoughtId/reactions', async (req, res) => {
+router.post('/:thoughtId/reactions', async (req, res) => {
   try {
-    const thoughtData = await Thought.findByIdAndUpdate(req.params.id, { $push: { reactions: req.body } }, { new: true, runValidators: true }).populate({ path: 'reactions', select: '-__v' }).select('-__v');
+    const thoughtData = await Thought.findByIdAndUpdate(req.params.thoughtId, { $push: { reactions: req.body } }, { new: true, runValidators: true }).populate({ path: 'reactions', select: '-__v' }).select('-__v');
     if (!thoughtData) {
       res.status(404).json({ message: 'No thought found with this id!' });
       return;
@@ -87,9 +87,9 @@ router.post(':thoughtId/reactions', async (req, res) => {
 });
 // http://localhost:3001/api/thoughts/6
 // DELETE a reaction to a thought
-router.delete('/:id/reactions/:reactionId', async (req, res) => {
+router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
     try {
-      const thoughtData = await Thought.findByIdAndUpdate(req.params.id, { $pull: { reactions: { reactionId: req.params.reactionId } } }, { new: true, runValidators: true }).populate({ path: 'reactions', select: '-__v' }).select('-__v');
+      const thoughtData = await Thought.findByIdAndUpdate(req.params.thoughtId, { $pull: { reactions: { _id: req.params.reactionId } } }, { new: true, runValidators: true }).populate({ path: 'reactions', select: '-__v' }).select('-__v');
       if (!thoughtData) {
         res.status(404).json({ message: 'No thought found with this id!' });
         return;
